@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle5</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0d0d1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    .top-logo {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+    }
+
+    .top-logo img {
+      height: 40px;
+      width: auto;
+      opacity: 0.9;
+    }
+
+    .brand {
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: 12px;
+      color: #fff;
+      margin-top: 40px;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 1px;
+      height: 60px;
+      background: #2d2d44;
+      margin: 40px 0;
+    }
+
+    .options {
+      display: flex;
+      gap: 40px;
+    }
+
+    .option {
+      padding: 16px 40px;
+      border: 1px solid #2d2d44;
+      color: #9ca3af;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      background: transparent;
+    }
+
+    .option:hover {
+      border-color: #e94560;
+      color: #fff;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-content {
+      background: #151528;
+      border: 1px solid #2d2d44;
+      padding: 40px 60px;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .modal-title {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .modal-text {
+      color: #9ca3af;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .modal-email {
+      color: #e94560;
+      text-decoration: none;
+    }
+
+    .modal-email:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="top-logo">
+    <img src="hallucinations-logo.png" alt="Hallucinations.cloud">
+  </div>
+
+  <div class="brand">Circle 5</div>
+
+  <div class="divider"></div>
+
+  <div class="options">
+    <a href="https://app.circle5.hallucinations.cloud" class="option">Consumer</a>
+    <div class="option" onclick="showModal('enterprise')">Enterprise</div>
+  </div>
+
+  <!-- Enterprise Modal -->
+  <div class="modal" id="enterprise-modal" onclick="closeModal(event, 'enterprise')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-title">Restricted Access</div>
+      <div class="modal-text">
+        By invitation only.<br><br>
+        <a href="mailto:brian@hallucinations.cloud" class="modal-email">brian@hallucinations.cloud</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showModal(type) {
+      document.getElementById(type + '-modal').classList.add('active');
+    }
+
+    function closeModal(event, type) {
+      document.getElementById(type + '-modal').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+      }
+    });
+  </script>
+
+</body>
+</html>
